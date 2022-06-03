@@ -14,8 +14,10 @@ async function getTrendingMoviesPreview() {
     const { data } = await api(`trending/movie/day`)
     const movies = data.results
     
+    trendingMoviesPreviewList.innerHTML = ""
+
     movies.forEach(movie => {
-        const trendingPreviewMoviesContainer = document.querySelector("#trendingPreview .trendingPreview-movieList")
+        const trendingMoviesPreviewList = document.querySelector("#trendingPreview .trendingPreview-movieList")
 
         const movieContainer = document.createElement("div")
         movieContainer.classList.add('movie-container');
@@ -27,9 +29,8 @@ async function getTrendingMoviesPreview() {
         movieImg.setAttribute("src", `https://image.tmdb.org/t/p/w300/${movie.poster_path}`)
 
         movieContainer.appendChild(movieImg)
-        trendingPreviewMoviesContainer.appendChild(movieContainer)
+        trendingMoviesPreviewList.appendChild(movieContainer)
 
-        console.log(movie.poster_path)
     });
 
 }
@@ -40,10 +41,11 @@ async function getCategoriesPreview() {
 
     const categories = data.genres
 
+    categoriesPreviewList.innerHTML = ""
+
     //* por cada elemento del array de categories vamos a poner una imagen de cada pelicula---------
 
     categories.forEach(movie => {
-        const PreviewCategoriesContainer = document.querySelector("#categoriesPreview .categoriesPreview-list")
 
         const categoryContainer = document.createElement("div")
         categoryContainer.classList.add('movie-container');
@@ -58,10 +60,7 @@ async function getCategoriesPreview() {
         //* agregando las cosas dentro del HTML-------------
         categoryTitle.appendChild(categoryTitleText)
         categoryContainer.appendChild(categoryTitle)
-        PreviewCategoriesContainer.appendChild(categoryContainer)
+        categoriesPreviewList.appendChild(categoryContainer)
     });
 
 }
-
-getTrendingMoviesPreview()
-getCategoriesPreview()

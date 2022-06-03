@@ -112,10 +112,11 @@ button {
 .categoriesPreview-list, .categories-list {
   display: grid;
   grid-template-columns: 1fr 1fr;
-
-  
 }
 
+.category-title{
+  margin-right: 5px;
+}
 
 /* Header */
 .header-container {

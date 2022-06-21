@@ -1,4 +1,4 @@
-let page = 1
+let page = 0;
 let maxPage;
 let infiniteScroll;
 
@@ -96,6 +96,7 @@ function homePage() {
     headerCategoryTitle.innerHTML = categoryName;
     
     getMoviesByCategory(categoryId);
+    infiniteScroll = getPaginatedMoviesByCategory(categoryId)
 }
   
   function movieDetailsPage() {
@@ -138,6 +139,8 @@ function homePage() {
     // ['#search', 'platzi']
     const [_, query] = location.hash.split('=');
     getMoviesBySearch(query);
+
+    infiniteScroll = getPaginatedMoviesBySearch(query)
 }
   
   function trendsPage() {
@@ -159,6 +162,8 @@ function homePage() {
     headerCategoryTitle.innerHTML = 'Tendencias';
   
     getTrendingMovies();
+    getPaginatedMovies("trending/movie/day", page)
+      
   
     infiniteScroll = getPaginatedTrendingMovies;
 }

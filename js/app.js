@@ -87,6 +87,28 @@ function createCategories(categories, container) {
   });
 }
 
+async function getPaginatedMovies(path, parametrosAdicionales){
+  const {scrollTop, scrollHeight, clientHeight} = document.documentElement;
+  const scrollIsBottom = (scrollTop + clientHeight) >= (scrollHeight - 15)
+  const pageIsNotBottom = page < maxPage;
+
+
+  if (scrollIsBottom && pageIsNotBottom) {
+    page++
+    console.log(page)
+
+    const { data } = await api(path, {
+      params: {
+        parametrosAdicionales,
+      }
+    });
+
+    const movies = data.results;
+
+    createMovies(movies, genericSection, {lazyLoad: true, clean: false})
+    
+  }
+}
 
 // utils ------------------------------------------------
 

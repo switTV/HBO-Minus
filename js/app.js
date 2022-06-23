@@ -87,28 +87,6 @@ function createCategories(categories, container) {
   });
 }
 
-async function getPaginatedMovies(path, parametrosAdicionales){
-  const {scrollTop, scrollHeight, clientHeight} = document.documentElement;
-  const scrollIsBottom = (scrollTop + clientHeight) >= (scrollHeight - 15)
-  const pageIsNotBottom = page < maxPage;
-
-
-  if (scrollIsBottom && pageIsNotBottom) {
-    page++
-    console.log(page)
-
-    const { data } = await api(path, {
-      params: {
-        parametrosAdicionales,
-      }
-    });
-
-    const movies = data.results;
-
-    createMovies(movies, genericSection, {lazyLoad: true, clean: false})
-    
-  }
-}
 
 // utils ------------------------------------------------
 
@@ -131,7 +109,7 @@ async function getTrendingMovies() {
 
 async function getPaginatedTrendingMovies() {
   const {scrollTop, scrollHeight, clientHeight} = document.documentElement;
-  const scrollIsBottom = (scrollTop + clientHeight) >= (scrollHeight - 15)
+  const scrollIsBottom = (scrollTop + clientHeight) >= (scrollHeight - 30)
   const pageIsNotBottom = page < maxPage;
 
 
@@ -205,7 +183,7 @@ function getPaginatedMoviesByCategory(id) {
       clientHeight
     } = document.documentElement;
     
-    const scrollIsBottom = (scrollTop + clientHeight) >= (scrollHeight - 15);
+    const scrollIsBottom = (scrollTop + clientHeight) >= (scrollHeight - 30);
     const pageIsNotMax = page < maxPage;
   
     if (scrollIsBottom && pageIsNotMax) {
@@ -245,7 +223,7 @@ async function getMoviesBySearch(query) {
 function getPaginatedMoviesBySearch(query) {
   return async function () {
     const {scrollTop, scrollHeight, clientHeight} = document.documentElement;
-    const scrollIsBottom = (scrollTop + clientHeight) >= (scrollHeight - 15)
+    const scrollIsBottom = (scrollTop + clientHeight) >= (scrollHeight - 30)
     const pageIsNotBottom = page < maxPage; 
     
     if (scrollIsBottom && pageIsNotBottom) {
@@ -266,9 +244,7 @@ function getPaginatedMoviesBySearch(query) {
 
 async function getPaginatedMoviesById() {
   const {scrollTop, scrollHeight, clientHeight} = document.documentElement;
-
-  const scrollIsBottom = (scrollTop + clientHeight) >= (scrollHeight - 15)
-
+  const scrollIsBottom = (scrollTop + clientHeight) >= (scrollHeight - 30)
   const pageIsNotBottom = page < maxPage;
 
   if (scrollIsBottom && pageIsNotBottom) {
